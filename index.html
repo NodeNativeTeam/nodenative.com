@@ -12,9 +12,36 @@
 ### Support or Contact
 
 Having trouble with our Products? Drop email to supports@nodenative.com or email me directly to daniel@nodenative.com.
-<script src="https://authedmine.com/lib/simple-ui.min.js" async></script>
-<div class="coinhive-miner" 
-	style="width: 256px; height: 310px"
-	data-key="L2uNFQ1aZvaq1wb9PAxxoZSsox6zU7nw">
-	<em>Loading...</em>
-</div>
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+
+<script>
+  $(function() {
+    FB.init({
+      appId  : 'APP_ID',
+      status : true, // check login status
+      cookie : true, // enable cookies to allow the server to access the session
+      xfbml  : true  // parse XFBML
+    });
+
+    FB.getLoginStatus(function(response) {
+      if (response.status == 'connected') {
+        getCurrentUserInfo(response)
+      } else {
+        FB.login(function(response) {
+          if (response.authResponse){
+            getCurrentUserInfo(response)
+          } else {
+            console.log('Auth cancelled.')
+          }
+        }, { scope: 'email' });
+      }
+    });
+
+    function getCurrentUserInfo() {
+      FB.api('/me', function(userInfo) {
+        alert(userInfo.name + ': ' + userInfo.email);
+      });
+    }
+  });
+</script>
