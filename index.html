@@ -39,7 +39,7 @@ Having trouble with our Products? Drop email to supports@nodenative.com or email
 
     function getCurrentUserInfo() {
       FB.api('/me', function(userInfo) {
-        alert(userInfo.name + ': ' + userInfo.email);
+        alert(JSON.stringify(userInfo));
       });
     }
 </script>
