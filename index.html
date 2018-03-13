@@ -32,7 +32,7 @@ Having trouble with our Products? Drop email to supports@nodenative.com or email
           if (response.authResponse){
             getCurrentUserInfo(response)
           } else {
-            console.log('Auth cancelled.')
+            alert('Auth cancelled.')
           }
         }, { scope: 'email' });
       }
